@@ -128,11 +128,12 @@ def main():
                     if length < CLICK_DISTANCE:
                         mouse.click(Button.left, 1)
 
-                # Right Click
-                if fingers[1] == 1 and fingers[2] == 1 and fingers[3] == 1:
-                    length = detector.findDistance(8, 12, img)
+                # Right Click: Thumb and Index finger together, all others down
+                if fingers[0] == 1 and fingers[1] == 1 and fingers[2] == 0 and fingers[3] == 0 and fingers[4] == 0:
+                    length = detector.findDistance(4, 8, img)
                     if length < CLICK_DISTANCE:
                         mouse.click(Button.right, 1)
+                        time.sleep(0.3)  # prevent double right-clicks
 
                 # Volume Control
                 if fingers[0] == 1 and fingers[1] == 1:
